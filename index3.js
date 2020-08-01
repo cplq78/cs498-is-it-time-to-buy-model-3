@@ -15,6 +15,7 @@ const render = data => {
   const dollarPrice = d => d3.format('($,.0f')(d.price);
   const dollarSelfDrive = d => d3.format('($,.0f')(d.self_driving);
   const dollarTotal = d => d3.format('($,.0f')(d.total);
+  const dollarTotalComp = d => d3.format('($,.0f')(d.total_comp);
 
   // x scale values computed using the nominal 'date' values
   const xScale = d3.scaleBand()
@@ -72,7 +73,7 @@ const render = data => {
             div.transition()
                 .duration(200)
                 .style("opacity", .9);
-            div.html("Total: "+ dollarTotal(d) + "<br/> Car: "  + dollarPrice(d) + "<br/> Autopilot: " + dollarSelfDrive(d))
+            div.html("<b>Total: "+ dollarTotal(d) + '</b>'+ "<br/> Car: "  + dollarPrice(d) + "<br/> Autopilot: " + dollarSelfDrive(d) + "</br>Compared to </br> launch price: " + dollarTotalComp(d))
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY - 28) + "px");
         })
@@ -128,6 +129,7 @@ d3.csv('data.csv').then(data => {
         d.total = +d.total;
         d.self_driving = +d.self_driving;
         d.price = +d.price;
+        d.total_comp = +d.total_comp;
     });
     render(data);
 });

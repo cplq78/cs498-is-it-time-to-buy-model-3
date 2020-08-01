@@ -13,6 +13,7 @@ const render = data => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
   const dollarFormat = d => d3.format('($,.0f')(d.price);
+  const dollarFormatComp = d => d3.format('($,.0f')(d.price_comp);
 
   // x scale values computed using the nominal 'date' values
   const xScale = d3.scaleBand()
@@ -59,27 +60,27 @@ const render = data => {
       .text("Dates");
 
 // create all rectangles
-  g.selectAll('rect')
-      .data(data)
-      .enter()
-      .append('rect')
-      .attr('x', d => xScale(xValue(d)))
-      .attr('width', xScale.bandwidth)
-      .attr('height', 0)
-      .attr('y', d => innerHeight)
-      .on("mouseover", function(d) {
-        div.transition()
-            .duration(200)
-            .style("opacity", .9);
-        div.html("Price: "  + dollarFormat(d))
-            .style("left", (d3.event.pageX) + "px")
-            .style("top", (d3.event.pageY - 28) + "px");
-      })
-      .on("mouseout", function() {
-        div.transition()
-            .duration(500)
-            .style("opacity", 0);
-      });
+    g.selectAll('rect')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('x', d => xScale(xValue(d)))
+        .attr('width', xScale.bandwidth)
+        .attr('height', 0)
+        .attr('y', d => innerHeight)
+        .on('mouseover', function(d) {
+            div.transition()
+                .duration(200)
+                .style('opacity', .9);
+            div.html('Price: '  + dollarFormat(d) + '</br>Compared to </br> launch price: ' + dollarFormatComp(d))
+                .style('left', (d3.event.pageX) + 'px')
+                .style('top', (d3.event.pageY - 28) + 'px');
+        })
+        .on("mouseout", function() {
+            div.transition()
+                .duration(500)
+                .style('opacity', 0);
+        });
 
   // tooltip
   const div = d3.select('body').append('div')
@@ -152,6 +153,7 @@ const render = data => {
 d3.csv('data.csv').then(data => {
     data.forEach(d => {
         d.price = +d.price;
+        d.price_comp = +d.price_comp;
     });
     render(data);
 });
