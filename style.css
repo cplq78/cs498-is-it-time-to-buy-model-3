@@ -1,0 +1,121 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+
+}
+
+#top {
+    padding-top: 0;
+}
+
+#lefter {
+    background-color: lightblue;
+    overflow: auto;
+    width: 250px;
+    height: 480px;
+    float: left;
+    margin: auto;
+}
+
+
+#footer{
+    background-color: lightgrey;
+}
+
+
+rect {
+    fill: steelblue;
+}
+
+rect:hover {
+    fill: orange;
+}
+
+
+text {
+font-size: 1.2em;
+}
+
+h2 {
+    text-align: center;
+    font-family: "Helvetica Neue",sans-serif;
+}
+
+h3 {
+    text-align: center;
+    font-family: "Helvetica Neue",sans-serif;
+}
+h4 {
+    text-align: center;
+    font-family: "Helvetica Neue",sans-serif;
+}
+
+p {
+    text-align: justify-all;
+    font-family: "Helvetica Neue",sans-serif;
+    font-size: 14px;
+    padding: 5px;
+}
+
+#next {
+    float: right;
+    margin: 2px;
+    padding: 3px;
+    list-style: none;
+    font-family: "Helvetica Neue",sans-serif;
+    font-size: 16px;
+}
+
+#previous {
+    float: left;
+    margin: 2px;
+    padding: 3px;
+    list-style: none;
+    font-family: "Helvetica Neue",sans-serif;
+    font-size: 16px;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    font-family: "Helvetica Neue",sans-serif;
+    font-size: 16px;
+    background: lightsteelblue;
+    border: 0;
+    border-radius: 10px;
+    pointer-events: none;
+}
+a:link, a:visited {
+    background-color: orange;
+    color: white;
+    padding: 1px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: orangered;
+}
+#leftLink {
+    background-color: white;
+    padding: 0;
+    color:blue;
+}
+
+#first {
+    background-color: white;
+    padding: 0;
+    color:white;
+}
+
+svg {
+    float: right;
+    padding-bottom: 25px;
+    padding-right: 35px;
+
+}
